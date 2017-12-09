@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,7 +32,7 @@ public class MChooseView extends JFrame{
 		contentPane.setLayout(null);
 		contentPane.setBackground(new Color(220,220,220));
 		JLabel picture = new JLabel("");
-	    picture.setIcon(new ImageIcon("img\\back.png"));
+	    picture.setIcon(new ImageIcon("img\\EventBG.png"));
 	    picture.setBounds(0, 0, INFO_W, INFO_H);
 	    contentPane.add(picture);
 	}

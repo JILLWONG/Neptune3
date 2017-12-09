@@ -1,7 +1,10 @@
 package controller;
 import view.MStartView;
 import view.ContentPane;
+import view.M2BattleView;
 import view.MChooseView;
+import view.MRoadView;
+import view.MShopView;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -23,7 +26,9 @@ import model.Player;
 public class StartGame {
 	public static MStartView sv;
 	public static MChooseView cv;
-	
+	public static MRoadView rv;
+	public static M2BattleView bv2;
+	public static MShopView shopv;
 	//wzw edit-add
 	/** 总距离*/
 	public static final int DISTANCE=100;
@@ -41,7 +46,7 @@ public class StartGame {
 		new Player(0);
 		Player.showDetails();
 		Event.initialize();
-		curEventId=eRand.nextInt(4)+1;
+		curEventId=8;
 		curEvent=Event.find(curEventId);
 		//wzw
 	}
@@ -69,15 +74,15 @@ public class StartGame {
 			Font font1=new Font("Monospaced",Font.BOLD,22);//设置字体格式和大小
 			JLabel youLose=new JLabel("you lose!");
 			youLose.setFont(font1);
-			youLose.setBounds(230, 5, 200, 40);
+			youLose.setBounds(300, 200, 200, 40);
 			MChooseView.contentPane.add(youLose);
-			JTextArea result=new JTextArea(StartGame.date+"："+Player.distance);
-			result.setLineWrap(true);
-			result.setFont(new Font("标楷体", Font.BOLD, 16));
-			result.setEditable(false);
-			result.setBackground(new Color(135,206,235));
-			result.setBounds(40, 50, 400, 150);
-			MChooseView.contentPane.add(result);
+//			JTextArea result=new JTextArea(StartGame.date+"："+Player.distance);
+//			result.setLineWrap(true);
+//			result.setFont(new Font("标楷体", Font.BOLD, 16));
+//			result.setEditable(false);
+//			result.setBackground(new Color(135,206,235));
+//			result.setBounds(40, 50, 400, 150);
+//			MChooseView.contentPane.add(result);
 			JLabel picture = new JLabel("");
 		    picture.setIcon(new ImageIcon("img\\back.png"));
 		    picture.setBounds(0, 0, MChooseView.INFO_W, MChooseView.INFO_H);
@@ -89,15 +94,15 @@ public class StartGame {
 			Font font1=new Font("Monospaced",Font.BOLD,22);//设置字体格式和大小
 			JLabel youWin=new JLabel("you win!");
 			youWin.setFont(font1);
-			youWin.setBounds(230, 5, 200, 40);
+			youWin.setBounds(300, 200, 200, 40);
 			MChooseView.contentPane.add(youWin);
-			JTextArea result=new JTextArea(StartGame.date+"："+Player.hp+"\n"+Player.food+"\n"+Player.money+"\n"+Player.money+"\n"+Player.water);
-			result.setLineWrap(true);
-			result.setFont(new Font("标楷体", Font.BOLD, 16));
-			result.setEditable(false);
-			result.setBackground(new Color(135,206,235));
-			result.setBounds(40, 50, 400, 150);
-			MChooseView.contentPane.add(result);
+//			JTextArea result=new JTextArea(StartGame.date+"："+Player.hp+"\n"+Player.food+"\n"+Player.money+"\n"+Player.money+"\n"+Player.water);
+//			result.setLineWrap(true);
+//			result.setFont(new Font("标楷体", Font.BOLD, 16));
+//			result.setEditable(false);
+//			result.setBackground(new Color(135,206,235));
+//			result.setBounds(40, 50, 400, 150);
+//			MChooseView.contentPane.add(result);
 			JLabel picture = new JLabel("");
 		    picture.setIcon(new ImageIcon("img\\back.png"));
 		    picture.setBounds(0, 0, MChooseView.INFO_W, MChooseView.INFO_H);

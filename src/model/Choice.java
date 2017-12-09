@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.SQLException;
-
 import controller.StartGame;
 
 /**
@@ -68,10 +67,60 @@ public class Choice {
 	 */
 	public Event newEvent(int nextID) throws SQLException {
 		if(nextID!=0) {
-			return Event.find(nextID);
+			if(nextID==-10) {
+				Player.evil++;
+				if(Player.evil<4) {
+					if(StartGame.eRand.nextInt(2)==0) {
+						nextID=9;
+					}else {
+						nextID=11;
+					}
+					//
+				}if(Player.evil==4) {
+					nextID=10;
+				}
+			}
+			if(nextID==-11) {
+				if(StartGame.eRand.nextInt(2)==0) {
+					nextID=9;
+				}else {
+					nextID=11;
+				}
+			}
+			if(nextID==-12) {
+				if(Player.evil>0) {
+					nextID=12;
+				}else {
+					nextID=13;
+				}
+			}
+			return Event.find(Math.abs(nextID));
 		}else {
-			int eventId;
-			eventId=StartGame.eRand.nextInt(4)+1;
+			int eventId=1;
+			if(StartGame.eRand.nextInt(8)==0) {
+				eventId=1;
+			}
+			if(StartGame.eRand.nextInt(8)==1) {
+				eventId=2;
+			}
+			if(StartGame.eRand.nextInt(8)==2) {
+				eventId=3;
+			}
+			if(StartGame.eRand.nextInt(8)==3) {
+				eventId=6;
+			}
+			if(StartGame.eRand.nextInt(8)==4) {
+				eventId=14;
+			}
+			if(StartGame.eRand.nextInt(8)==5) {
+				eventId=21;
+			}
+			if(StartGame.eRand.nextInt(8)==6) {
+				eventId=25;
+			}
+			if(StartGame.eRand.nextInt(8)==7) {
+				eventId=28;
+			}
 			return Event.find(eventId);
 		}
 	}
@@ -92,6 +141,18 @@ public class Choice {
 		Player.water+=this.getWater();
 		Player.money+=this.getMoney();
 		Player.distance+=this.getDiatance();
+		if(Player.hp<0) {
+			Player.hp=0;
+		}
+		if(Player.food<0) {
+			Player.food=0;
+		}
+		if(Player.water<0) {
+			Player.water=0;
+		}
+		if(Player.distance<0) {
+			Player.distance=0;
+		}
 		if(this.getBuff()==1) {
 			Player.torpedo++;
 		}

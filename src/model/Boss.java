@@ -13,7 +13,7 @@ public class Boss extends Character{
     private int yspeed = 1; //垂直移动的速度为2  
     private int score=200;
     private int attacktype=-1;//boss的攻击方式，-1表示攻击间隔时不攻击
-    private int hp=100;
+    private int hp=40;
       
     //对外提供的读取敌舰分数
     public int getScore(){  
@@ -130,8 +130,6 @@ public class Boss extends Character{
 		bullets[2]=b3;
 		bullets[3]=b4;
 		bullets[4]=b5;
-		
-		System.out.println("done");
 		
         return bullets;  
 	}

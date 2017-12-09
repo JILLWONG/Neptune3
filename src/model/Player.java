@@ -21,6 +21,8 @@ public class Player extends Character{
 	public static int distance;
 	/** 攻击力*/
 	public static int attack;
+	/** 罪恶值*/
+	public static int evil;
 	
 	private int doubleFire;
 	private int score;
@@ -30,8 +32,9 @@ public class Player extends Character{
 		food=100;
 		water=100;
 		money=100;
-		torpedo=0;
+		torpedo=100;
 		distance=0;
+		evil=0;
 		
 		image = Game.hero0;  
         height = image.getHeight();  
@@ -41,6 +44,7 @@ public class Player extends Character{
         doubleFire = 0;   
         score = 0; 
 	}
+	
 	
 	public static void showDetails() {
 		System.out.println("Hp:"+hp+" food:"+food+" water:"+water+" money:"+money+" distance:"+distance);
@@ -136,10 +140,23 @@ public class Player extends Character{
 		//调用碰撞检测方法，检测是否碰撞  
         boolean r = Character.boom(this, c);  
         if(r){ //如果碰撞  
-            Player.hp--;  
+            Player.hp--;
+            if(Player.hp<0) {
+            	Player.hp=0;
+            }
             doubleFire = 0;  
         }  
         return r;  
+	}
+	
+	public void setDoubleFire()
+	{
+		if(torpedo>0)
+		{
+			doubleFire+=20;
+			torpedo--;
+		}
+		
 	}
 	
 	//获得生命值

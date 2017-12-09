@@ -36,16 +36,16 @@ public class MStartView extends JFrame{
         contentPane=new JPanel();
         this.setContentPane(contentPane);
 		contentPane.setLayout(null);
-		int labelHigh=80;
-		int labelWidth=100;
-		start=new JLabel("开始");
-		Font font=new Font("Monospaced",Font.BOLD,44);//设置字体格式和大小
+		int labelHigh=100;
+		int labelWidth=200;
+		start=new JLabel("START");
+		Font font=new Font("Monospaced",Font.BOLD,60);//设置字体格式和大小
 		start.setFont(font);
-		start.setBounds((INFO_W-labelWidth)/2, INFO_H/2, labelWidth, labelHigh);
+		start.setBounds((INFO_W-labelWidth)/2, INFO_H/2+100, labelWidth, labelHigh);
 		start.setForeground(new Color(255,255,255));
 		
 		final JLabel picture = new JLabel("");
-	    picture.setIcon(new ImageIcon("img\\background.jpg"));
+	    picture.setIcon(new ImageIcon("img\\StartBG.png"));
 	    picture.setBounds(0, 0, INFO_W, INFO_H);
 	    
 		start.addMouseListener(new MouseListener() {
@@ -80,7 +80,7 @@ public class MStartView extends JFrame{
 		});
 	    
 	    final JLabel picture1 = new JLabel("");
-	    picture1.setIcon(new ImageIcon("img\\back.png"));
+	    picture1.setIcon(new ImageIcon("img\\Story1.png"));
 	    picture1.setBounds(0, 0, INFO_W, INFO_H);
 	    picture1.addMouseListener(new MouseListener() {
 
@@ -117,7 +117,7 @@ public class MStartView extends JFrame{
 	    });
 	    
 	    JLabel picture2 = new JLabel("");
-	    picture2.setIcon(new ImageIcon("img\\background.jpg"));
+	    picture2.setIcon(new ImageIcon("img\\Story2.png"));
 	    picture2.setBounds(0, 0, INFO_W, INFO_H);
 	    picture2.addMouseListener(new MouseListener() {
 
@@ -126,6 +126,9 @@ public class MStartView extends JFrame{
 				// TODO Auto-generated method stub
 				StartGame.sv.setVisible(false);
 				StartGame.cv=new MChooseView("Neptune");
+				StartGame.rv=new MRoadView("进度");
+				StartGame.shopv=new MShopView("恶魔商店");
+				StartGame.shopv.setVisible(false);
 			}
 
 			@Override

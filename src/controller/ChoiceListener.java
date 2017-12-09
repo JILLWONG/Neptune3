@@ -14,7 +14,9 @@ import javax.swing.Timer;
 
 import model.Player;
 import view.ContentPane;
+import view.M2BattleView;
 import view.MChooseView;
+import view.MRoadView;
 
 public class ChoiceListener implements ActionListener{
 
@@ -34,6 +36,7 @@ public class ChoiceListener implements ActionListener{
 	    	gc.listener();
 	    	gc.action();
 		}
+		
 		ContentPane.textLabel2.append(StartGame.date+"："+StartGame.curEvent.getChoices()[this.choice].getDiary()+"\n");
 		ContentPane.textLabel2.setCaretPosition(ContentPane.textLabel2.getText().length());
 		try {
@@ -43,6 +46,7 @@ public class ChoiceListener implements ActionListener{
 			e1.printStackTrace();
 		}
 		StartGame.curEvent.getChoices()[this.choice].changeAttribute();
+		int curFight=StartGame.curEvent.getChoices()[this.getChoice()].getIsFight();
 		try {
 			StartGame.curEvent=StartGame.curEvent.getChoices()[this.choice].newEvent(StartGame.curEvent.getChoices()[this.choice].getNextID());
 		} catch (SQLException e1) {
@@ -68,6 +72,12 @@ public class ChoiceListener implements ActionListener{
 		ContentPane.choice[2].setVisible(false);
 		ContentPane.choice[3].setVisible(false);
 		ContentPane.picture.setVisible(true);
+		
+		MRoadView.roadView.repaint();
+		
+		if(curFight==2) {
+			StartGame.bv2=new M2BattleView("躲避");
+		}
 		
 		if(StartGame.gameOver()) {
 			// TODO

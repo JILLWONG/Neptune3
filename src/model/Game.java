@@ -83,7 +83,6 @@ public class Game{
     	this.theBoss=new Boss();
     	bossflag=true;
     	this.theBoss.beginShoot();
-    	System.out.println("done");
     }
     
     /** 

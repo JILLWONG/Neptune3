@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
@@ -33,6 +35,7 @@ public class GameController {
     
     //首先定义一个计时器变量index，记录run方法运行的次数   
     private int runTimes = 0; 
+    private Timer timer = new Timer();  
     
     public GameController()
     {
@@ -77,10 +80,16 @@ public class GameController {
                     game.setBossFlag();
                     game.theBoss=new Boss();
                     runTimes=0;
+                    timer.cancel();
                     BattleView.frame.dispose();
                     ContentPane.tattr[0].setText(""+Player.hp);//edit-add
                     ContentPane.picture.setVisible(false);//edit-add
                     ContentPane.picture.setVisible(true);//edit-add
+                    if(Player.hp<=0) {
+                    	ContentPane.textLabel2.append(StartGame.date+"："+"战斗失败\n");
+                    }else if(Player.hp>0) {
+                    	ContentPane.textLabel2.append(StartGame.date+"："+"战斗胜利\n");
+                    }
                     StartGame.gameOver();
                 }  
             }  
@@ -102,9 +111,29 @@ public class GameController {
             }  
   
         }; //匿名内部类要以分号结尾  
+        
+        
+        System.out.println("1");
+        KeyAdapter key=new KeyAdapter() {
+        	
+        	@Override
+			public void keyPressed(KeyEvent e) {
+        		System.out.println("get0");
+				// TODO Auto-generated method stub
+				if(e.getKeyCode()==KeyEvent.VK_SPACE)
+				{
+					game.player.setDoubleFire();
+					System.out.println("double fire");
+				}
+			}
+        	
+        };
+        
         /*step5: 要响应鼠标事件，必须将鼠标事件添加到程序的监听器中*/  
         battleView.addMouseMotionListener(l); //支持鼠标的移动事件，不支持鼠标单击事件  
-        battleView.addMouseListener(l);; //支持鼠标单击事件  
+        battleView.addMouseListener(l);//支持鼠标单击事件  
+        BattleView.frame.addKeyListener(key);
+		System.out.println("get");
     }
     
     /*
@@ -112,7 +141,7 @@ public class GameController {
      */
     void action(){         
         //step1: 创建定时器  
-        Timer timer = new Timer();  
+        
         //step2: 调用定时器对象的schedule方法，做计划  
         //       第一个参数：TimerTask类型的匿名内部类  
         //               必须重写run方法——核心——要做什么事  
@@ -120,6 +149,10 @@ public class GameController {
   
             @Override  
             public void run() {  
+            	if(state==GAME_OVER)
+            	{
+            		timer.cancel();
+            	}
                 //除了repaint方法，其余功能只在RUNNING状态下执行  
                 if(state == RUNNING){  
                     //每执行一次run方法，runTimes就+1  

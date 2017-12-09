@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import controller.ChoiceListener;
+import controller.ShopEnter;
 import controller.StartGame;
 import model.Player;
 
@@ -22,6 +23,7 @@ public class ContentPane extends JPanel{
 	public static JTextArea textLabel2;
 	public static JLabel picture;
 	public static JScrollPane js;
+	public static JButton shop;
 	
 	public ContentPane() {
 		Font font14=new Font("Monospaced",Font.BOLD,14);//设置字体格式和大小
@@ -78,6 +80,7 @@ public class ContentPane extends JPanel{
 		text.setBackground(new Color(135,206,235));
 		text.setBounds(30, 30, 500, 230);
 		text.setLayout(null);
+		text.setOpaque(false);
 		this.add(text);
 		textLabel=new JTextArea(StartGame.date+"："+StartGame.curEvent.getDescription());
 		textLabel.setLineWrap(true);
@@ -85,17 +88,26 @@ public class ContentPane extends JPanel{
 		textLabel.setEditable(false);
 		textLabel.setBackground(new Color(135,206,235));
 		textLabel.setBounds(40, 50, 400, 150);
+		textLabel.setOpaque(false);
 		text.add(textLabel);
 
+		shop =new JButton("恶魔商店");
+		shop.addActionListener(new ShopEnter());
+		shop.setBounds(350, 200, 100, 30);
+		shop.setFont(font14);
+		text.add(shop);
+		
 		JLabel ttextTitle=new JLabel("事件");
 		ttextTitle.setFont(font1);
 		ttextTitle.setBounds(230, 5, 200, 40);
+		ttextTitle.setOpaque(false);
 		text.add(ttextTitle);
 		
 		/** 左下角选择区域 */
 		JPanel choiceAera=new JPanel();
 		choiceAera.setBounds(30, 280, 500, 200);
 		choiceAera.setBackground(new Color(135,206,235));
+		choiceAera.setOpaque(false);
 		this.add(choiceAera);
 		choiceAera.setLayout(null);
 		choice[0] =new JButton(StartGame.curEvent.getChoices()[0].getDescription());
@@ -122,6 +134,7 @@ public class ContentPane extends JPanel{
 		JLabel tchoiceTitle=new JLabel("选择");
 		tchoiceTitle.setFont(font1);
 		tchoiceTitle.setBounds(230, 5, 200, 40);
+		tchoiceTitle.setOpaque(false);
 		choiceAera.add(tchoiceTitle);
 		
 		/** 右上角航行日志区域 */
@@ -130,6 +143,7 @@ public class ContentPane extends JPanel{
 		itemAera.setBackground(new Color(135,206,235));
 		this.add(itemAera);
 		itemAera.setLayout(null);
+		itemAera.setOpaque(false);
 		textLabel2=new JTextArea("1398-02-08：你指挥Neptune号开启了XX之旅。\n");
 		textLabel2.setVisible(true);
 		textLabel2.setLineWrap(true);
@@ -137,17 +151,19 @@ public class ContentPane extends JPanel{
 		textLabel2.setEditable(false);
 		textLabel2.setBackground(new Color(135,206,235));
 		textLabel2.setBounds(0, 0, 160, 150);
+		textLabel2.setOpaque(false);
 		js=new JScrollPane(textLabel2);
 		js.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		js.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		js.setBounds(50, 50, 180, 150);
+		js.setOpaque(false);
 		itemAera.add(js);
-		//itemAera.add(textLabel2);	
 		
 
 		JLabel tItemTitle=new JLabel("航行日志");
 		tItemTitle.setFont(font1);
 		tItemTitle.setBounds(100, 10, 180, 40);
+		tItemTitle.setOpaque(false);
 		itemAera.add(tItemTitle);
 		
 		
@@ -155,11 +171,13 @@ public class ContentPane extends JPanel{
 		JPanel attrAera=new JPanel();
 		attrAera.setBounds(580, 280, 250, 200);
 		attrAera.setBackground(new Color(135,206,235));
+		attrAera.setOpaque(false);
 		this.add(attrAera);
 		attrAera.setLayout(null);
 		JLabel tAttrTitle=new JLabel("属性");
 		tAttrTitle.setFont(font1);
 		tAttrTitle.setBounds(100, 10, 180, 40);
+		tAttrTitle.setOpaque(false);
 		attrAera.add(tAttrTitle);
 		JLabel tBlood=new JLabel("血量：    %");
 		tBlood.setFont(font);

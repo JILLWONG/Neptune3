@@ -16,10 +16,10 @@ public class BattleView extends JPanel{
 	private static final long serialVersionUID = 1L; 
 	
 	 //背景图片的大小320*568  
-    public static final int WIDTH = 320;  
+    public static final int WIDTH = 890;  
     public static final int HEIGHT = 568;  
     //游戏界面固定大小336*607  
-    public static final int FRAME_WIDTH = 336;  
+    public static final int FRAME_WIDTH = 906;  
     public static final int FRAME_HEIGHT = 607;
     
     private Game game;
@@ -36,9 +36,10 @@ public class BattleView extends JPanel{
         frame = new JFrame("Game");  
         frame.setSize(FRAME_WIDTH,FRAME_HEIGHT);//(336, 607);  
         frame.setAlwaysOnTop(true); //设置窗体置顶  
-        frame.setLocationRelativeTo(null); //设置窗体的位置，null表示居中  
+        frame.setLocation(350, 100);
+        
         //设置窗体关闭同时，退出程序  
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
           
         /*在窗体中嵌入背景面板对象——JPanel*/  
         frame.add(this); //将背景面板对象嵌入到窗体对象中  
@@ -128,7 +129,7 @@ public class BattleView extends JPanel{
     public void paintScore_Life(Graphics g){  
         int x = 10; //文字在左上角的x坐标  
         int y = 15; //文字在左上角的y坐标  
-        Font font = new Font(Font.SANS_SERIF,Font.BOLD,14);  
+        Font font = new Font(Font.SANS_SERIF,Font.BOLD,16);  
         g.setFont(font); //设置字体的画笔对象  
         //绘制第一行:分数  
         g.drawString("SCORE: " + game.player.getScore(), x, y);  
@@ -138,9 +139,9 @@ public class BattleView extends JPanel{
     }
     
     public void paintBoss_Life(Graphics g){  
-        int x = 210; //文字在左上角的x坐标  
+        int x = 710; //文字在左上角的x坐标  
         int y = 15; //文字在左上角的y坐标  
-        Font font = new Font(Font.SANS_SERIF,Font.BOLD,14);  
+        Font font = new Font(Font.SANS_SERIF,Font.BOLD,16);  
         g.setFont(font); //设置字体的画笔对象  
         //绘制第一行:分数    
         g.drawString("BOSS LIFE: " + game.theBoss.getHp(), x, y);  
